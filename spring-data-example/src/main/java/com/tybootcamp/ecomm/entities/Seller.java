@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "sellers")
 public class Seller
 {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -15,7 +16,7 @@ public class Seller
     private String accountId;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "seller", orphanRemoval = true)
-    private Profile profile;
+    private SellerProfile profile;
 
     public Seller()
     {
@@ -46,12 +47,12 @@ public class Seller
         this.accountId = accountId;
     }
 
-    public Profile getProfile()
+    public SellerProfile getProfile()
     {
         return profile;
     }
 
-    public void setProfile(Profile profile)
+    public void setProfile(SellerProfile profile)
     {
         this.profile = profile;
     }

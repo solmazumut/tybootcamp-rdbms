@@ -1,6 +1,6 @@
 package com.tybootcamp.ecomm.controllers;
 
-import com.tybootcamp.ecomm.entities.Profile;
+import com.tybootcamp.ecomm.entities.SellerProfile;
 import com.tybootcamp.ecomm.entities.Seller;
 import com.tybootcamp.ecomm.repositories.ProductJpaRepository;
 import com.tybootcamp.ecomm.repositories.SellerRepository;
@@ -41,7 +41,7 @@ public class SellerController {
     public ResponseEntity<Seller> addNewSeller(@Valid @RequestBody Seller seller)
     {
         Seller sellerEntity = new Seller(seller.getAccountId());
-        Profile profile = new Profile(sellerEntity, seller.getProfile().getFirstName(), seller.getProfile().getLastName(), seller.getProfile().getGender());
+        SellerProfile profile = new SellerProfile(sellerEntity, seller.getProfile().getFirstName(), seller.getProfile().getLastName(), seller.getProfile().getGender());
         sellerEntity.setProfile(profile);
         sellerEntity.getProfile().setWebsite(seller.getProfile().getWebsite());
         sellerEntity.getProfile().setAddress(seller.getProfile().getAddress());

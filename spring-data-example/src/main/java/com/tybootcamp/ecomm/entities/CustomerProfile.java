@@ -2,26 +2,21 @@ package com.tybootcamp.ecomm.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tybootcamp.ecomm.enums.Gender;
-
-import java.util.Date;
+import com.tybootcamp.ecomm.enums.ProfileType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
+
 
 @Entity
-public class Profile
-{
+public class CustomerProfile {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JoinColumn(nullable = false)
-    @MapsId
-    @JsonIgnore
-    private Seller seller;
-
 
     @OneToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(nullable = true)
     @MapsId
     @JsonIgnore
     private Customer customer;
@@ -40,105 +35,85 @@ public class Profile
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    public Profile()
-    {
+    public CustomerProfile() {
     }
 
-    public Profile(Seller seller, String firstName, String lastName, Gender gender)
-    {
-        this.seller = seller;
+    public CustomerProfile(Customer customer, Seller seller, String firstName, String lastName, Gender gender) {
+        this.customer = customer;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
     }
 
-    public long getId()
-    {
+    public long getId() {
         return id;
     }
 
-    public void setId(long id)
-    {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Seller getSeller()
-    {
-        return seller;
+    public ProfileType getType() {
+        if (customer == null) {
+            return ProfileType.Seller;
+        }
+        return ProfileType.Customer;
     }
 
-    public void setSeller(Seller seller)
-    {
-        this.seller = seller;
+
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public String getFirstName()
-    {
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName)
-    {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getLastName()
-    {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName)
-    {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getWebsite()
-    {
+    public String getWebsite() {
         return website;
     }
 
-    public void setWebsite(String website)
-    {
+    public void setWebsite(String website) {
         this.website = website;
     }
 
-    public Date getBirthday()
-    {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday)
-    {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
-    public String getAddress()
-    {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address)
-    {
+    public void setAddress(String address) {
         this.address = address;
     }
 
-    public String getEmailAddress()
-    {
+    public String getEmailAddress() {
         return emailAddress;
     }
 
-    public void setEmailAddress(String emailAddress)
-    {
+    public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
-    }
-
-    public Gender getGender()
-    {
-        return gender;
-    }
-
-    public void setGender(Gender gender)
-    {
-        this.gender = gender;
     }
 }

@@ -5,7 +5,7 @@ import com.github.javafaker.Faker;
 import com.tybootcamp.ecomm.enums.Gender;
 import com.tybootcamp.ecomm.entities.Category;
 import com.tybootcamp.ecomm.entities.Product;
-import com.tybootcamp.ecomm.entities.Profile;
+import com.tybootcamp.ecomm.entities.SellerProfile;
 import com.tybootcamp.ecomm.entities.Seller;
 import com.tybootcamp.ecomm.repositories.CategoryRepository;
 import com.tybootcamp.ecomm.repositories.ProductJpaRepository;
@@ -44,8 +44,8 @@ public class EcommApplication implements CommandLineRunner {
     public void run(String... strings) throws Exception {
         _sellerRepository.getById(12l);
         //--------------Create two sellers-----------------------------------------
-        Seller judy = new Seller("Judy's account id = 879");
-        Profile judyProfile = new Profile(judy, "Judy", "Adams", Gender.Female);
+        Seller judy = new Seller("Judy's account id = 535");
+        SellerProfile judyProfile = new SellerProfile(judy, "Judy", "Adams", Gender.Female);
         judyProfile.setBirthday(new SimpleDateFormat("MM/dd/yyyy").parse(("4/12/2010")));
         judyProfile.setEmailAddress("hi@demo.com");
         judy.setProfile(judyProfile);
@@ -53,7 +53,7 @@ public class EcommApplication implements CommandLineRunner {
 
 
         Seller michael = new Seller("Micheal's account id = 023");
-        Profile michaelProfile = new Profile(michael, "Michael", "Martin", Gender.Male);
+        SellerProfile michaelProfile = new SellerProfile(michael, "Michael", "Martin", Gender.Male);
         michaelProfile.setEmailAddress("hi@demo.com");
         michael.setProfile(michaelProfile);
         michael = _sellerRepository.save(michael);
