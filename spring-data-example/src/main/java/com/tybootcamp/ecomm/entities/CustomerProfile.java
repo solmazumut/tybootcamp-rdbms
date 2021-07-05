@@ -45,6 +45,10 @@ public class CustomerProfile {
         this.gender = gender;
     }
 
+    public CustomerProfile(Customer customerEntity, String firstName, String LastName, Gender gender){
+        this.customer = customerEntity;
+    }
+
     public long getId() {
         return id;
     }
@@ -115,5 +119,14 @@ public class CustomerProfile {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+    public Gender getGender()
+    {
+        return gender;
+    }
+
+    public void setGender(Gender gender)
+    {
+        this.gender = gender;
     }
 }
